@@ -6,7 +6,7 @@ import { TfiLocationPin } from "react-icons/tfi";
 const Banner = ({ query, handelInputChange }) => {
   return (
     <div>
-      <div className=' max-w-screen-2xl container mx-auto xl:px-24 md:px-20 px-4 py-14'>
+      <div className=' max-w-screen-2xl container mx-auto  lg:px-24 px-7 py-14'>
         <h1 className='text-5xl font-bold text-primary mb-3'>
           Find your <span className='text-blue'>DREAM JOB</span> today
         </h1>
@@ -15,7 +15,7 @@ const Banner = ({ query, handelInputChange }) => {
           dolor? Omnis.
         </p>
         <form>
-          <div className='flex'>
+          <div className='md:flex xl:flex max-w-screen-2xl    '>
             <div className='flex md:rounded-s-md rounded shadow-sm border-2 border-gray-200  ring-1ring-inset  focus-within:ring-2 focus-within:ring-inset focus-within:rounded  focus-within:ring-indigo-600 md:w-1/2 w-full'>
               <input
                 type='text'
