@@ -4,6 +4,7 @@ import { useState } from "react";
 import Card from "../components/Card";
 import Jobs from "../Pages/Jobs";
 import Sidebar from "../sidebar/Sidebar";
+import NewsLetter from "../components/NewsLetter";
 
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -92,8 +93,8 @@ const Home = () => {
           jobLocation.toLowerCase() === selected.toLowerCase() ||
           parseInt(maxPrice) <= parseInt(selected) ||
           salaryType.toLowerCase() === selected.toLowerCase() ||
-          // experienceLevel === selected ||
-          // postingDate === selected ||
+          experienceLevel === selected ||
+          postingDate >= selected ||
           employmentType.toLowerCase() === selected.toLowerCase()
       );
       console.log(filteredJobs);
@@ -138,8 +139,13 @@ const Home = () => {
           {/* pagination */}
           {result.length > 0 ? (
             <div className='flex justify-center mt-4 space-x-8'>
-              <button onClick={prevPage}>Previous</button>
-              <span>
+              <button
+                onClick={prevPage}
+                disabled={currentPage === 1}
+                className='hover:underline'>
+                Previous
+              </button>
+              <span className=' mx-2'>
                 Page {currentPage} of{" "}
                 {Math.ceil(filteredItems.length / itemsPerPage)}
               </span>
@@ -147,7 +153,8 @@ const Home = () => {
                 onClick={nextPage}
                 disabled={
                   currentPage === Math.ceil(filteredItems.length / itemsPerPage)
-                }>
+                }
+                className='hover:underline'>
                 Next
               </button>
             </div>
@@ -155,7 +162,9 @@ const Home = () => {
             ""
           )}
         </div>
-        <div className='bg-white p-4 rounded'>right</div>
+        <div className='bg-white p-4 rounded'>
+          <NewsLetter />
+        </div>
       </div>
     </div>
   );
