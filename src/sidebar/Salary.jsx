@@ -6,8 +6,8 @@ const Salary = ({ handleChange, handleClick }) => {
   return (
     <div>
       <h4 className='text-lg mb-2 font-semibold'>Salary</h4>
-      <div className='flex gap-2 mb-4'>
-        <Button onClickHandler={handleClick} value='' title='Hourly' />
+      <div className='flex justify-between mb-4'>
+        <Button onClickHandler={handleClick} value='Hourly' title='Hourly' />
         <Button onClickHandler={handleClick} value='Monthly' title='Monthly' />
         <Button onClickHandler={handleClick} value='Yearly' title='Annually' />
       </div>
