@@ -2,19 +2,37 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 import { useState } from "react";
+import { Toaster, toast } from "sonner";
 
 const CreateJob = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     data.skills = selectedOption;
+    // console.log(data);
+    fetch("http://localhost:3000/post-job", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      res.json().then((result) => {
+        console.log(result);
+        if (result.acknowledged === true) {
+          toast.success("Job Posted Successfully");
+        } else {
+          toast.error("Something Went Wrong");
+        }
+        reset();
+      });
+    });
   };
   const options = [
     { value: "JavaScript", label: "JavaScript" },
@@ -190,6 +208,7 @@ const CreateJob = () => {
             type='submit'
             className='block mt-12 bg-blue text-white font-semibold px-8 py-2 rounded-md cursor-pointer'
           />
+          <Toaster richColors />
         </form>
       </div>
     </div>
