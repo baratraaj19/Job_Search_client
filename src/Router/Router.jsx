@@ -4,7 +4,9 @@ import Home from "../Pages/Home";
 import About from "../Pages/About";
 import CreateJob from "../Pages/CreateJob";
 import MyJobs from "../Pages/MyJobs";
+import UpdateJob from "../Pages/UpdateJob";
 
+// Routes
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +27,12 @@ const router = createBrowserRouter([
       {
         path: "/secret-page",
         element: <About />,
+      },
+      {
+        path: "edit-job/:id",
+        element: <UpdateJob />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/all-jobs/${params.id}`),
       },
     ],
   },
