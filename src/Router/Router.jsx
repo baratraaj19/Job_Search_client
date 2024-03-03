@@ -5,6 +5,7 @@ import About from "../Pages/About";
 import CreateJob from "../Pages/CreateJob";
 import MyJobs from "../Pages/MyJobs";
 import UpdateJob from "../Pages/UpdateJob";
+import ErrorPage from "../Pages/ErrorPage";
 
 // Routes
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/my-jobs",
         element: <MyJobs />,
+      },
+      {
+        path: "/salary",
+        element: <ErrorPage />,
       },
       {
         path: "/secret-page",
