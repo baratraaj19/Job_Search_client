@@ -6,6 +6,8 @@ import CreateJob from "../Pages/CreateJob";
 import MyJobs from "../Pages/MyJobs";
 import UpdateJob from "../Pages/UpdateJob";
 import ErrorPage from "../Pages/ErrorPage";
+import Login from "../components/Login";
+import JobDetails from "../Pages/JobDetails";
 
 // Routes
 const router = createBrowserRouter([
@@ -17,6 +19,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+
       {
         path: "/post-job",
         element: <CreateJob />,
@@ -39,8 +42,13 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:3000/all-jobs/${params.id}`),
       },
+      {
+        path: "/job/:id",
+        element: <JobDetails />,
+      },
     ],
   },
+  { path: "/login", element: <Login /> },
 ]);
 
 export default router;

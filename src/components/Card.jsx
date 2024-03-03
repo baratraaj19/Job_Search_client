@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const Card = ({ data }) => {
   const {
     companyName,
+    _id,
     jobTitle,
     companyLogo,
     minPrice,
@@ -19,7 +20,9 @@ const Card = ({ data }) => {
   return (
     <div>
       <section className='card m-5 border-2 p-5 cursor-pointer border-gray-200 rounded-lg'>
-        <Link to={"/"} className='flex gap-4 flex-col  sm:flex-row items-start'>
+        <Link
+          to={`/job/${_id}`}
+          className='flex gap-4 flex-col  sm:flex-row items-start'>
           <img src={companyLogo} alt='' />
           <div>
             <h4 className='text-primary mb-1  '>{companyName}</h4>
