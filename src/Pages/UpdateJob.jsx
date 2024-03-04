@@ -36,7 +36,7 @@ const UpdateJob = () => {
   const onSubmit = (data) => {
     data.skills = selectedOption;
     // console.log(data);
-    fetch(`http://localhost:3000/update-job/${id}`, {
+    fetch(`https://job-search-server-ten.vercel.app/update-job/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

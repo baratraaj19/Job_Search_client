@@ -34,7 +34,7 @@ const MyJobs = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:3000/myJobs/${email}`)
+    fetch(`https://job-search-server-ten.vercel.app/myJobs/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
@@ -59,7 +59,7 @@ const MyJobs = () => {
   };
   const handleDelete = (id) => {
     console.log(id);
-    fetch(`http://localhost:3000/job/${id}`, {
+    fetch(`https://job-search-server-ten.vercel.app/job/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
