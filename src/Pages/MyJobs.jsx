@@ -55,20 +55,16 @@ const MyJobs = () => {
   const delayFunction = () => {
     setTimeout(() => {
       toast.info("Please refresh the page to see the changes");
-    }, 3000);
+    }, 2000);
   };
+
   const handleDelete = (id) => {
+    toast.error("Job deleted successfully");
+    delayFunction();
     console.log(id);
     fetch(`https://job-search-server-ten.vercel.app/job/${id}`, {
       method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.acknowledged === true) {
-          toast.error("Job deleted successfully");
-          delayFunction();
-        }
-      });
+    }).then((res) => res.json());
   };
 
   return (

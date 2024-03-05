@@ -24,8 +24,8 @@ const CreateJob = () => {
       body: JSON.stringify(data),
     }).then((res) => {
       res.json().then((result) => {
-        console.log(result);
-        if (result.acknowledged === true) {
+        console.log(result.acknowledged);
+        if (result.postedBy != null || result.acknowledged) {
           toast.success("Job Posted Successfully");
         } else {
           toast.error("Something Went Wrong");
@@ -60,6 +60,7 @@ const CreateJob = () => {
               <label className='block mb-2 text-lg'>Job Title</label>
               <input
                 type='text'
+                required={true}
                 defaultValue={"web Developer"}
                 {...register("jobTitle")}
                 className='create-job-input'
@@ -69,6 +70,7 @@ const CreateJob = () => {
               <label className='block mb-2 text-lg'>Company Name</label>
               <input
                 type='text'
+                required={true}
                 placeholder='Microsoft'
                 {...register("companyName")}
                 className='create-job-input'
@@ -81,6 +83,7 @@ const CreateJob = () => {
               <label className='block mb-2 text-lg'>Minimum Salary</label>
               <input
                 type='text'
+                required={true}
                 placeholder='$80k'
                 {...register("minPrice")}
                 className='create-job-input'
@@ -90,6 +93,7 @@ const CreateJob = () => {
               <label className='block mb-2 text-lg'>Maximum Salary</label>
               <input
                 type='text'
+                required={true}
                 placeholder='$120k'
                 {...register("maxPrice")}
                 className='create-job-input'
@@ -100,7 +104,10 @@ const CreateJob = () => {
           <div className=' create-job-flex'>
             <div className='lg-w-1/2 w-full'>
               <label className='block mb-2 text-lg'>salaryType</label>
-              <select {...register("salaryType")} className='create-job-input'>
+              <select
+                {...register("salaryType")}
+                required={true}
+                className='create-job-input'>
                 <option value=''>Choose Your Salary Type</option>
                 <option value='Hourly'>Hourly</option>
                 <option value='Monthly'>Monthly</option>
@@ -111,6 +118,7 @@ const CreateJob = () => {
               <label className='block mb-2 text-lg'>job Location</label>
               <input
                 type='text'
+                required={true}
                 placeholder='Chennai'
                 {...register("jobLocation")}
                 className='create-job-input'
@@ -123,6 +131,7 @@ const CreateJob = () => {
               <label className='block mb-2 text-lg'>Job Posting Date</label>
               <input
                 type='date'
+                required={true}
                 placeholder='mm/dd/yyyy'
                 {...register("postingDate")}
                 className='create-job-input'
@@ -132,6 +141,7 @@ const CreateJob = () => {
               <label className='block mb-2 text-lg'>Experience Level</label>
               <select
                 {...register("experienceLevel")}
+                required={true}
                 className='create-job-input'>
                 <option value=''>Choose Your Experience Level</option>
                 <option value='Any experience'>Any experience</option>
@@ -162,6 +172,7 @@ const CreateJob = () => {
             <div className='lg-w-1/2 w-full'>
               <label className='block mb-2 text-lg'>Company Logo</label>
               <input
+                required={true}
                 type='url'
                 placeholder='paste your company logo url here : https://www.npmjs.com/img1.png'
                 {...register("companyLogo")}
@@ -171,6 +182,7 @@ const CreateJob = () => {
             <div className='lg-w-1/2 w-full'>
               <label className='block mb-2 text-lg'>Experience Type</label>
               <select
+                required={true}
                 {...register("employmentType")}
                 className='create-job-input'>
                 <option value=''>Choose Your Experience Type</option>
@@ -190,6 +202,7 @@ const CreateJob = () => {
               className='create-job-input'
               placeholder='Write your job description here'
               id=''
+              required={true}
               cols='30'
               rows='10'></textarea>
           </div>
@@ -202,6 +215,7 @@ const CreateJob = () => {
               name='jobPostedBy'
               {...register("postedBy")}
               className='create-job-input'
+              required={true}
               placeholder='Your email'></input>
           </div>
           <input
