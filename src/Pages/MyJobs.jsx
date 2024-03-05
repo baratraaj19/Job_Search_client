@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { FiEdit } from "react-icons/fi";
 import { Toaster, toast } from "sonner";
-import { SpinnerCircular } from "spinners-react";
+import { useNavigate } from "react-router-dom";
 
 const MyJobs = () => {
   const email = "baratraajcr19@gmail.com";
   const [jobs, setJobs] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-
   const [currentPage, setCurrentPage] = useState(1);
 
   const itemPerPage = 10;
@@ -52,19 +51,13 @@ const MyJobs = () => {
     setIsLoading(false);
   };
 
-  const delayFunction = () => {
-    setTimeout(() => {
-      toast.info("Please refresh the page to see the changes");
-    }, 2000);
-  };
-
-  const handleDelete = (id) => {
-    toast.error("Job deleted successfully");
-    delayFunction();
-    console.log(id);
-    fetch(`https://job-search-server-ten.vercel.app/job/${id}`, {
+  const handleDelete = async (id) => {
+    await fetch(`https://job-search-server-ten.vercel.app/job/${id}`, {
       method: "DELETE",
-    }).then((res) => res.json());
+    });
+    const filteredJobs = jobs.filter((job) => job._id !== id);
+    setJobs(filteredJobs);
+    toast.error("Job deleted successfully");
   };
 
   return (
@@ -169,7 +162,7 @@ const MyJobs = () => {
                               handleDelete(job._id);
                             }}
                             className='bg-red-500 rounded-md text-white px-4 py-2'>
-                            Delete
+                            delete
                           </button>
                         </td>
                       </tr>
