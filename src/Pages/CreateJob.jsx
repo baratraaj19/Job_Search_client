@@ -6,6 +6,8 @@ import { Toaster, toast } from "sonner";
 
 const CreateJob = () => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [base64Image, setBase64Image] = useState(null);
   const {
     register,
     handleSubmit,
@@ -13,27 +15,18 @@ const CreateJob = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    data.skills = selectedOption;
-    // console.log(data);
-    fetch("https://job-search-server-ten.vercel.app/post-job", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then((res) => {
-      res.json().then((result) => {
-        console.log(result.acknowledged);
-        if (result.postedBy != null || result.acknowledged) {
-          toast.success("Job Posted Successfully");
-        } else {
-          toast.error("Something Went Wrong");
-        }
-        reset();
-      });
-    });
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setBase64Image(e.target.result);
+    };
+    reader.readAsDataURL(file);
   };
+  // console.log(base64Image);
+
   const options = [
     { value: "JavaScript", label: "JavaScript" },
     { value: "Html", label: "Html" },
@@ -49,6 +42,35 @@ const CreateJob = () => {
     { value: "Java", label: "Java" },
     { value: "C++", label: "C++" },
   ]; // watch input value by passing the name of it
+
+  const onSubmit = (data) => {
+    data.skills = selectedOption;
+    // console.log(data);
+    if (base64Image) {
+      data.companyLogo = base64Image;
+    }
+    console.log(data.companyLogo);
+
+    // data.companyLogo = base64Image;
+    // console.log(data.companyLogo);
+    fetch("https://job-search-server-ten.vercel.app/post-job", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      res.json().then((result) => {
+        // console.log(result.acknowledged);
+        if (result.postedBy != null || result.acknowledged) {
+          toast.success("Job Posted Successfully");
+        } else {
+          toast.error("Something Went Wrong");
+        }
+        reset();
+      });
+    });
+  };
 
   return (
     <div className='max-w-screen-2xl container mx-auto xl:px-24 px-4'>
@@ -172,12 +194,14 @@ const CreateJob = () => {
             <div className='lg-w-1/2 w-full'>
               <label className='block mb-2 text-lg'>Company Logo</label>
               <input
+                type='file'
                 required={true}
-                type='url'
-                placeholder='paste your company logo url here : https://www.npmjs.com/img1.png'
-                {...register("companyLogo")}
+                accept='image/*'
+                placeholder='upload your company logo here'
                 className='create-job-input'
+                onChange={handleFileChange}
               />
+              <div>{base64Image && <img src={base64Image} alt='' />}</div>
             </div>
             <div className='lg-w-1/2 w-full'>
               <label className='block mb-2 text-lg'>Experience Type</label>
