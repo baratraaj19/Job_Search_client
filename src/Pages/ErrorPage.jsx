@@ -8,7 +8,7 @@ const ErrorPage = () => {
         <div className='container'>
           <div className='row'>
             <div className='col-sm-12 '>
-              <div className='flex justify-center items-center flex-col ml-auto text-center'>
+              <div className='flex justify-center items-center flex-col w-[50%] ml-[35%]  text-center'>
                 <div className='four_zero_four_bg w-full h-2 m-auto'>
                   <h1 className='text-center'>404</h1>
                 </div>

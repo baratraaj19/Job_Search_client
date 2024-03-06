@@ -1,7 +1,7 @@
 import React from "react";
 import { FiCalendar, FiClock, FiDollarSign, FiMapPin } from "react-icons/fi";
 import { Link } from "react-router-dom";
-
+import { FaIndianRupeeSign } from "react-icons/fa6";
 const Card = ({ data }) => {
   const {
     companyName,
@@ -42,8 +42,8 @@ const Card = ({ data }) => {
                 {employmentType}
               </span>
               <span className='flex items-center gap-2 '>
-                <FiDollarSign />
-                {minPrice} - {maxPrice}k {salaryType}
+                <FaIndianRupeeSign />
+                {minPrice} - {maxPrice} LPA {salaryType}
               </span>
               <span className='flex items-center gap-2 '>
                 <FiCalendar />

@@ -49,7 +49,7 @@ const CreateJob = () => {
     if (base64Image) {
       data.companyLogo = base64Image;
     }
-    console.log(data.companyLogo);
+    // console.log(data.companyLogo);w
 
     // data.companyLogo = base64Image;
     // console.log(data.companyLogo);
@@ -82,6 +82,7 @@ const CreateJob = () => {
               <label className='block mb-2 text-lg'>Job Title</label>
               <input
                 type='text'
+                maxlength='100'
                 required={true}
                 defaultValue={"web Developer"}
                 {...register("jobTitle")}
@@ -92,6 +93,7 @@ const CreateJob = () => {
               <label className='block mb-2 text-lg'>Company Name</label>
               <input
                 type='text'
+                maxlength='100'
                 required={true}
                 placeholder='Microsoft'
                 {...register("companyName")}
@@ -104,6 +106,7 @@ const CreateJob = () => {
             <div className='lg-w-1/2 w-full'>
               <label className='block mb-2 text-lg'>Minimum Salary</label>
               <input
+                maxlength='5'
                 type='text'
                 required={true}
                 placeholder='$80k'
@@ -115,6 +118,7 @@ const CreateJob = () => {
               <label className='block mb-2 text-lg'>Maximum Salary</label>
               <input
                 type='text'
+                maxlength='5'
                 required={true}
                 placeholder='$120k'
                 {...register("maxPrice")}
@@ -140,6 +144,7 @@ const CreateJob = () => {
               <label className='block mb-2 text-lg'>job Location</label>
               <input
                 type='text'
+                maxlength='50'
                 required={true}
                 placeholder='Chennai'
                 {...register("jobLocation")}
@@ -237,6 +242,7 @@ const CreateJob = () => {
             <input
               type='email'
               name='jobPostedBy'
+              maxlength='100'
               {...register("postedBy")}
               className='create-job-input'
               required={true}
