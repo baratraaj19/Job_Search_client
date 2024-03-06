@@ -34,7 +34,7 @@ const Home = () => {
   const handelInputChange = (e) => {
     setQuery(e.target.value);
     // console.log(query);
-    console.log(filteredItems);
+    // console.log(filteredItems);
   };
 
   // radio filter

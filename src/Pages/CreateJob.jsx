@@ -41,7 +41,8 @@ const CreateJob = () => {
     { value: "Python", label: "Python" },
     { value: "Java", label: "Java" },
     { value: "C++", label: "C++" },
-  ]; // watch input value by passing the name of it
+  ];
+  // watch input value by passing the name of it
 
   const onSubmit = (data) => {
     data.skills = selectedOption;
@@ -49,10 +50,7 @@ const CreateJob = () => {
     if (base64Image) {
       data.companyLogo = base64Image;
     }
-    // console.log(data.companyLogo);w
 
-    // data.companyLogo = base64Image;
-    // console.log(data.companyLogo);
     fetch("https://job-search-server-ten.vercel.app/post-job", {
       method: "POST",
       headers: {
@@ -61,8 +59,7 @@ const CreateJob = () => {
       body: JSON.stringify(data),
     }).then((res) => {
       res.json().then((result) => {
-        // console.log(result.acknowledged);
-        if (result.postedBy != null || result.acknowledged) {
+        if (result.postedBy != null) {
           toast.success("Job Posted Successfully");
         } else {
           toast.error("Something Went Wrong");
@@ -206,15 +203,17 @@ const CreateJob = () => {
                 className='create-job-input'
                 onChange={handleFileChange}
               />
-              <div>{base64Image && <img src={base64Image} alt='' />}</div>
+              <div className='h-32 w-32 bg-gray-200 mix-blend-multiply'>
+                {base64Image && <img src={base64Image} alt='' />}
+              </div>
             </div>
             <div className='lg-w-1/2 w-full'>
-              <label className='block mb-2 text-lg'>Experience Type</label>
+              <label className='block mb-2 text-lg'>Job Type</label>
               <select
                 required={true}
                 {...register("employmentType")}
                 className='create-job-input'>
-                <option value=''>Choose Your Experience Type</option>
+                <option value=''>Choose Your Job Type</option>
                 <option value='Internship'>Full-time</option>
                 <option value='Part-time'>Part-time</option>
                 <option value='Temporary'>Temporary</option>

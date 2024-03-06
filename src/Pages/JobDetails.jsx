@@ -38,7 +38,11 @@ const JobDetails = () => {
       <div className='text-center text-2xl font-bold mt-10'>Job Details</div>
       <div className='max-w-screen-2xl container mx-auto mt-16 md:px-0 xl:px-24 px-4'>
         <div className='bg-gray-200 p-4 rounded-md flex flex-col gap-3'>
-          <img src={job.companyLogo} alt='' />
+          <img
+            className='w-24 bg-transparent mix-blend-multiply'
+            src={job.companyLogo}
+            alt=''
+          />
           <h2>
             <b>jobTitle :</b> {job.jobTitle}
           </h2>

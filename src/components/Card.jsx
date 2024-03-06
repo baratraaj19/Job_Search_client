@@ -23,11 +23,7 @@ const Card = ({ data }) => {
         <Link
           to={`/job/${_id}`}
           className='flex gap-4 flex-col  sm:flex-row items-start'>
-          <img
-            className='w-24 h-24 rounded-full object-contain '
-            src={companyLogo}
-            alt=''
-          />
+          <img className='w-24 h-24 object-contain ' src={companyLogo} alt='' />
           <div>
             <h4 className='text-primary mb-1  '>{companyName}</h4>
             <h3 className='text-lg font-semibold mb-2'>{jobTitle}</h3>
@@ -43,7 +39,7 @@ const Card = ({ data }) => {
               </span>
               <span className='flex items-center gap-2 '>
                 <FaIndianRupeeSign />
-                {minPrice} - {maxPrice} LPA {salaryType}
+                {minPrice} - {maxPrice} k {salaryType}
               </span>
               <span className='flex items-center gap-2 '>
                 <FiCalendar />
